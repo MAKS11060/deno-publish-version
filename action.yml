@@ -2,6 +2,9 @@ name: Deno Publish Version
 description: Set version from gh tag
 
 author: MAKS11060
+branding:
+  icon: chevrons-up
+  color: gray-dark
 
 runs:
   using: composite
