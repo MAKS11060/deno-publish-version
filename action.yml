@@ -1,4 +1,4 @@
-name: deno-publish-version
+name: Deno Publish Version
 description: Set version from gh tag
 
 author: MAKS11060
