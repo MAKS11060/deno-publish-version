@@ -1,10 +1,14 @@
 name: Deno Publish Version
-description: Set version from gh tag
-
 author: MAKS11060
+description: Set version from gh tag
 branding:
   icon: chevrons-up
   color: gray-dark
+
+inputs:
+  config-file:
+    description: Target file (e.g. deno.jsonc)
+    default: 'deno.jsonc'
 
 runs:
   using: composite
@@ -15,5 +19,5 @@ runs:
       deno-version: v1.x
 
   - name: Set version from release tag
-    run: deno run -A scripts/publish.ts --ver ${{ github.event.release.tag_name }}
+    run: deno run -Aq scripts/publish.ts --ver ${{ github.event.release.tag_name }} -c ${{ inputs.config-file }}
     shell: bash
