@@ -32,5 +32,5 @@ jobs:
         uses: maks11060/deno-publish-version@1
 
       - name: Publish to JSR
-        run: deno publish
+        run: deno publish --allow-dirty
 ```
