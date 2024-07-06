@@ -19,5 +19,5 @@ runs:
       deno-version: v1.x
 
   - name: Set version from release tag
-    run: deno run -Aq ./scripts/publish.ts --ver ${{ github.event.release.tag_name }} -c ${{ inputs.config-file }}
+    run: deno run -Aq https://raw.githubusercontent.com/MAKS11060/deno-publish-version/main/scripts/publish.ts --ver ${{ github.event.release.tag_name }} -c ${{ inputs.config-file }}
     shell: bash
