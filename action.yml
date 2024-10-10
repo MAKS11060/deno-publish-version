@@ -7,7 +7,7 @@ branding:
 
 inputs:
   config-file:
-    description: Target file (e.g. deno.jsonc)
+    description: Target file (e.g. deno.jsonc, deno.json)
     default: 'deno.jsonc'
   tag:
     description: Tag name (github.event.release.tag_name)
@@ -16,11 +16,6 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Set up Deno
-    uses: denoland/setup-deno@v1
-    with:
-      deno-version: v1.x
-
   - name: Set version from release tag
     run: deno run -Aq https://raw.githubusercontent.com/MAKS11060/deno-publish-version/main/scripts/publish.ts --ver ${{ inputs.tag }} -c ${{ inputs.config-file }}
     shell: bash
