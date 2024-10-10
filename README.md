@@ -1,5 +1,5 @@
 # Deno Publish Version
-Set publish version from github tag
+Changes the version in **deno.json[c]** or **package.json** before publishing
 
 # Examples
 
