@@ -27,7 +27,7 @@ jobs:
         uses: denoland/setup-deno@v2
 
       - name: Set version # Get release tag and update in deno.jsonc
-        uses: maks11060/deno-publish-version@2
+        uses: maks11060/deno-publish-version@v2
         with:
           config-file: deno.jsonc # or deno.json
 
@@ -59,7 +59,7 @@ jobs:
         uses: denoland/setup-deno@v2
 
       - name: Set version # Get the version from the tag and update to 'deno.json[c]'
-        uses: maks11060/deno-publish-version@2
+        uses: maks11060/deno-publish-version@v2
         with:
           config-file: deno.jsonc # or deno.json
           tag: ${{ github.ref_name }}
