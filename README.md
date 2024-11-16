@@ -1,5 +1,24 @@
 # Deno Publish Version
-Changes the version in **deno.json[c]** or **package.json** before publishing
+
+Change the version of the package before publishing it.
+
+Any **'Package'** files containing the `"version": "0.0.0"` are supported.
+
+- Default files: `deno.jsonc, deno.json, jsr.json, package.json`
+
+# Usage
+
+```yml
+- uses: denoland/setup-deno@v2
+
+- uses: maks11060/deno-publish-version@v2
+  with:
+    # Default: [deno.jsonc|deno.json|jsr.json|package.json]
+    config-file:
+
+    # Default: ${{ github.event.release.tag_name }} 'v1.2.3' or '1.2.3'
+    tag:
+```
 
 # Examples
 
@@ -26,10 +45,8 @@ jobs:
       - name: Set up Deno 2
         uses: denoland/setup-deno@v2
 
-      - name: Set version # Get release tag and update in deno.jsonc
+      - name: Set version # Get the version from the release tag and update in [config].json
         uses: maks11060/deno-publish-version@v2
-        with:
-          config-file: deno.jsonc # or deno.json
 
       - name: Publish to JSR
         run: deno publish --allow-dirty
@@ -58,10 +75,9 @@ jobs:
       - name: Set up Deno 2
         uses: denoland/setup-deno@v2
 
-      - name: Set version # Get the version from the tag and update to 'deno.json[c]'
+      - name: Set version # Get the version from tag and update it in [config].json
         uses: maks11060/deno-publish-version@v2
         with:
-          config-file: deno.jsonc # or deno.json
           tag: ${{ github.ref_name }}
 
       - name: Publish to JSR
