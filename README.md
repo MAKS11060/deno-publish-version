@@ -1,5 +1,7 @@
 # Deno Publish Version
 
+[![CI](https://github.com/MAKS11060/deno-publish-version/actions/workflows/ci.yml/badge.svg)](https://github.com/MAKS11060/deno-publish-version/actions/workflows/ci.yml)
+
 Change the version of the package before publishing it.
 
 Any **'Package'** files containing the `"version": "0.0.0"` are supported.
