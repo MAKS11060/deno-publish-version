@@ -1,0 +1,45 @@
+# ci.yml
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '**.ts'
+
+jobs:
+  test-publish-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      matrix:
+        config-file: ['deno.jsonc', 'deno.json', 'jsr.json', 'package.json']
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Deno 2
+        uses: denoland/setup-deno@v2
+
+      - name: Create config file
+        run: |
+          echo '{"version": "0.0.0"}' > ${{ matrix.config-file }}
+
+      - name: Set version
+        uses: maks11060/deno-publish-version@v2
+        with:
+          tag: 0.0.1
+          config-file: ${{ matrix.config-file }}
+
+      - name: Verify version update
+        run: |
+          cat ${{ matrix.config-file }}
+          if grep -q '"version": "0.0.1"' ${{ matrix.config-file }}; then
+            echo "Version updated successfully"
+          else
+            echo "Version update failed"
+            exit 1
+          fi
